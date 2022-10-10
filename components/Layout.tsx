@@ -32,7 +32,9 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
               />
             </div>
             <div className="ml-6 flex items-center space-x-4">
-              Blockchain Tech
+              <Link href='/'>
+                Blockchain Tech
+              </Link>
             </div>
           </div>
           <div className="flex items-center">
