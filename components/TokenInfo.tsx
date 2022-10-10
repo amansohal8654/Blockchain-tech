@@ -1,30 +1,26 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect, useCallback } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { HeartIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { PencilIcon, PlusIcon } from "@heroicons/react/20/solid";
+import axios from "axios";
 
-/*
-address
-: 
-"0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c"
-decimals
-: 
-18
-logoURI
-: 
-"https://tokens.1inch.io/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c_1.png"
-name
-: 
-"Wrapped BNB"
-symbol
-: 
-"WBNB"
-tags
-: 
-(2) ['tokens', 'PEG:BNB']
- */
 export default function TokenInfo({ open, setOpen, infoToken }) {
-  console.log(infoToken);
+  const [limitOrder, setLimitOrder] = useState([]);
+
+  useEffect(() => {
+    getLimitOrder();
+  }, [infoToken]);
+
+  const getLimitOrder = useCallback(async () => {
+    try {
+      const limitOrderData = await axios.get(
+        `https://limit-orders.1inch.io/v2.0/1/limit-order/address/${infoToken?.address}?page=1&limit=100`
+      );
+      setLimitOrder(limitOrderData?.data);
+      console.log(limitOrderData?.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [infoToken]);
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -137,6 +133,13 @@ export default function TokenInfo({ open, setOpen, infoToken }) {
                         <h3 className="font-medium text-gray-900">
                           limit orders
                         </h3>
+                        {limitOrder?.length > 0 ? (
+                          limitOrder?.map((value: any) => {
+                            <p>{value}</p>;
+                          })) : (
+                            <p>Limit order Not Found</p>
+                          ) 
+                        }
                       </div>
                     </div>
                   </div>
