@@ -4,7 +4,8 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export type User = {
+export type Blockchain = {
   id: number
   name: string
+  imageUrl: string
 }
