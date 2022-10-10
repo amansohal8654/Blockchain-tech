@@ -1,4 +1,13 @@
-# TypeScript Next.js example
+# Blockchain tech app with TypeScript Next.js
+
+## Quick start 
+Open this project in you favorite terminal and run command
+```yarn install```
+
+After That simply Run
+``` yarn dev```
+
+:) Here You go Check your Browser or go to localhost:3000
 
 This is a really simple project that shows the usage of Next.js with TypeScript.
 
