@@ -1,10 +1,20 @@
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
+import { useState } from 'react'
+import TokenInfo from './TokenInfo';
 import Loader from './Loader'
+
 const TokenList = ({tokenData}) => {
-    console.log(tokenData)
+    const [open, setOpen] = useState(false)
+    const [infoToken, setInfoToken] = useState();
+
+    const handelTokenInfoSlider = (tokenKey: string) => {
+        setInfoToken(tokenData?.tokens[tokenKey])
+        setOpen(true)
+    }
 
   return (
     <>
+    <TokenInfo open={open} setOpen={setOpen} infoToken={infoToken}/>
     {tokenData ? <div className="p-8">
       <h2 className="text-sm font-medium text-gray-500 ">Token List</h2>
       <ul
@@ -13,7 +23,7 @@ const TokenList = ({tokenData}) => {
       >
         {Object.entries(tokenData?.tokens).map(([key, token] : any) => (
           <li
-            key={token?.name}
+            key={key}
             className="col-span-1 flex rounded-md shadow-sm"
           >
             <div
@@ -24,14 +34,13 @@ const TokenList = ({tokenData}) => {
                   alt=""
                 />
             </div>
-            <div className="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
+            <div onClick={() => handelTokenInfoSlider(key)} className="cursor-pointer flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
               <div className="flex-1 truncate px-4 py-2 text-sm">
-                <a
-                  href=""
+                <div
                   className="font-medium text-gray-900 hover:text-gray-600"
                 >
                   {token.name}
-                </a>
+                </div>
                 <p className="text-gray-500">{token?.address} Members</p>
               </div>
               <div className="flex-shrink-0 pr-2">
