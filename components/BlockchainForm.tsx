@@ -5,7 +5,7 @@ import axios from "axios";
 function BlockchainForm({ setOpen }) {
   const [selectedBlockchain, setSelectedBlockchain] = useState(sampleBlockchainData[0]);
   const [show, setShow] = useState(true)
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState<string>();
 
   const selectBlockchainForDatabase = (event : any) => {
     console.log(event.target.value);
