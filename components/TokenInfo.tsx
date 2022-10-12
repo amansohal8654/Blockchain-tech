@@ -1,26 +1,8 @@
-import { Fragment, useState, useEffect, useCallback } from "react";
+import { Fragment} from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { HeartIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import axios from "axios";
-
-export default function TokenInfo({ open, setOpen, infoToken }) {
-  const [limitOrder, setLimitOrder] = useState([]);
-
-  useEffect(() => {
-    getLimitOrder();
-  }, [infoToken]);
-
-  const getLimitOrder = useCallback(async () => {
-    try {
-      const limitOrderData = await axios.get(
-        `https://limit-orders.1inch.io/v2.0/1/limit-order/address/${infoToken?.address}?page=1&limit=100`
-      );
-      setLimitOrder(limitOrderData?.data);
-      console.log(limitOrderData?.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }, [infoToken]);
+export default function TokenInfo({ open, setOpen, infoToken}) {
+ 
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -128,18 +110,6 @@ export default function TokenInfo({ open, setOpen, infoToken }) {
                             </span>
                           </div>
                         </dl>
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-gray-900">
-                          limit orders
-                        </h3>
-                        {limitOrder?.length > 0 ? (
-                          limitOrder?.map((value: any) => {
-                            <p>{value}</p>;
-                          })) : (
-                            <p>Limit order Not Found</p>
-                          ) 
-                        }
                       </div>
                     </div>
                   </div>

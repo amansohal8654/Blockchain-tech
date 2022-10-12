@@ -1,5 +1,8 @@
 import { sampleBlockchainData } from "../utils/sample-data";
+import { CurrencyDollarIcon, ArrowTrendingUpIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
+
+
 const BlockchainList = () => {
   return (
     <>
@@ -8,9 +11,8 @@ const BlockchainList = () => {
         className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 mt-8"
       >
         {sampleBlockchainData.map((Blockchain) => (
-          <Link href = {`/${Blockchain.id}`}>
             <li
-              key={Blockchain.id}
+            key = {Blockchain.id}
               className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow cursor-pointer"
             >
               <div className="flex flex-1 flex-col p-8">
@@ -30,8 +32,31 @@ const BlockchainList = () => {
                   </dd>
                 </dl>
               </div>
+              <div>
+            <div className="-mt-px flex divide-x divide-gray-200">
+              <div className="flex w-0 flex-1">
+                <Link href = {`tokens/${Blockchain.id}`}>
+                <button
+                  className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
+                >
+                  <CurrencyDollarIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <span className="ml-3">Tokens</span>
+                </button>
+                </Link>
+              </div>
+              <div className="-ml-px flex w-0 flex-1">
+                <Link href = {`limit-orders/${Blockchain.id}`}>
+                <button 
+                  className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
+                >
+                  <ArrowTrendingUpIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <span className="ml-3">Limit Orders</span>
+                </button>
+                </Link>
+              </div>
+            </div>
+          </div>
             </li>
-          </Link>
         ))}
       </ul>
     </>

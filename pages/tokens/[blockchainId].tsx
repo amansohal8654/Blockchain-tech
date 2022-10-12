@@ -1,5 +1,5 @@
-import Layout from "../components/Layout";
-import TokenList from "../components/TokenList";
+import Layout from "../../components/Layout";
+import TokenList from "../../components/TokenList";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
