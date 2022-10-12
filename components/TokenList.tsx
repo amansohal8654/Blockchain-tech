@@ -4,6 +4,7 @@ import TokenInfo from './TokenInfo';
 import Loader from './Loader'
 
 const TokenList = ({tokenData}) => {
+  console.log(tokenData);
     const [open, setOpen] = useState(false)
     const [infoToken, setInfoToken] = useState();
 

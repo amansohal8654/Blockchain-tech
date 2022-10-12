@@ -19,6 +19,6 @@ module.exports = {
       domains: ['localhost', 'firebasestorage.googleapis.com', 'images.unsplash.com', 'tailwindui.com', 'www.bing.com', 'us-central1-enlist-project.cloudfunctions.net', 'storage.googleapis.com'],
     },
     env: {
-  
+      Localhost_Endpoint: 'http://localhost:3365'
     },
   }
